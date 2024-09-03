@@ -4,6 +4,7 @@ import requests
 import random
 import datetime
 
+# ? サイドバー作成
 page = st.sidebar.selectbox('Chose your page', ['users', 'rooms', 'bookings'])
 
 # ? usersを選択した場合の処理
