@@ -1,7 +1,7 @@
 import datetime
 from pydantic import BaseModel, Field
 
-
+# * FastAPIサイド 型の定義
 class Booking(BaseModel):
     booking_id: int
     user_id: int

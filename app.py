@@ -4,6 +4,7 @@ import requests
 import random
 import datetime
 
+# * フロントエンド streamlit作成
 # ? サイドバー作成
 page = st.sidebar.selectbox('Chose your page', ['users', 'rooms', 'bookings'])
 

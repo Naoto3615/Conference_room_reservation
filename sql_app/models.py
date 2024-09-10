@@ -1,7 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from .database import Base
 
-
+# * DB定義 テーブル作成
 # ? ユーザーテーブル
 class User(Base):
     __tablename__ = 'users'
