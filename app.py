@@ -10,15 +10,14 @@ page = st.sidebar.selectbox('Chose your page', ['users', 'rooms', 'bookings'])
 
 # ? usersを選択した場合の処理
 if page == 'users':
-    st.title('APIテスト画面（ユーザー）')
+    st.title('ユーザー登録画面')
 
     with st.form(key='user'):
         # ? フォームの中身
-        user_id: int = random.randint(0, 10)
+        # user_id: int = random.randint(0, 10)
         username: str = st.text_input('ユーザー名', max_chars=12)
 
         data = {
-            'user_id': user_id,
             'username': username
         }
 
@@ -26,27 +25,29 @@ if page == 'users':
 
         # ? 送信ボタンを押した際の挙動
         if submitted:
-            st.json(data)
 
             url = 'http://127.0.0.1:8000/users'
             # ? 送る内容
             res = requests.post(url,
                                 data=json.dumps(data))
-            st.write(res.json())
-            st.write(data)
+            # st.write(res.status_code)
+            if res.status_code == 200:
+                st.success('ユーザー登録完了')
+                
+
 
 # ? roomを選択した場合の処理
 elif page == 'rooms':
-    st.title('APIテスト画面（会議室）')
+    st.title('会議室登録画面')
 
     with st.form(key='rooms'):
         # ? フォームの中身
-        room_id: int = random.randint(0, 10)
+        # room_id: int = random.randint(0, 10)
         room_name: str = st.text_input('会議室名', max_chars=12)
         capacity: int = st.number_input('定員', step=1, max_value=300)
 
         data = {
-            'room_id': room_id,
+            # 'room_id': room_id,
             'room_name': room_name,
             'capacity': capacity
         }
@@ -55,18 +56,18 @@ elif page == 'rooms':
 
         # ? 送信ボタンを押した際の挙動
         if submitted:
-            st.json(data)
 
             url = 'http://127.0.0.1:8000/room'
             # ? 送る内容
             res = requests.post(url,
                                 data=json.dumps(data))
-            st.write(res.json())
-            st.write(data)
+            if res.status_code == 200:
+                st.write("会議室登録成功")
+
 
 # ? bookingを選択した場合の処理
 elif page == 'bookings':
-    st.title('APIテスト画面（予約）')
+    st.title('会議室予約画面')
 
     with st.form(key='bookings'):
         # ? フォームの中身
