@@ -86,7 +86,7 @@ elif page == 'bookings':
             'user_id': user_id,
             'room_id': room_id,
             'booked_num': booked_num,
-            'start_datetime': datetime.datetime(
+            'start_datetime': datetime.datetime(    
                 year=date.year,
                 month=date.month,
                 day=date.day,
