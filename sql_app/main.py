@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends
-from . import models, schemas, crud
+from . import schemas, models, crud
 from sqlalchemy.orm import Session
 from .database import SessionLocal, engine
 from typing import List
@@ -49,19 +49,19 @@ async def read_bookings(skip: int = 0, limit: int = 200, db: Session = Depends(g
 
 # ? ユーザー登録画面 [post]
 @app.post("/users",response_model=schemas.User)
-async def create_user(skip: int = 0, limit: int = 200, db: Session = Depends(get_db)):
-    return crud.create_user(db,schemas.User)
+async def create_user(user: schemas.UserCreate, skip: int = 0, limit: int = 200, db: Session = Depends(get_db)):
+    return crud.create_user(db=db,user=user)
 
 
 
 # ? 部屋登録画面 [post]
 @app.post("/room", response_model=schemas.Room)
-async def create_room(skip: int = 0, limit: int = 200, db: Session = Depends(get_db)):
-    return crud.create_room(db,schemas.Room)
+async def create_room(room: schemas.CreateRoom, skip: int = 0, limit: int = 200, db: Session = Depends(get_db)):
+    return crud.create_room(db,room)
 
 
 # ? 会議室登録画面 [post]
 @app.post("/bookings")
-async def create_boooking(skip: int = 0, limit: int = 200, db: Session = Depends(get_db)):
-    return crud.create_booking(db,schemas.Booking)
+async def create_boooking(booking: schemas.CreateBooking, skip: int = 0, limit: int = 200, db: Session = Depends(get_db)):
+    return crud.create_booking(db,booking)
 
